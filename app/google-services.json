@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "794989247067",
+    "project_id": "graphqltest-xd",
+    "storage_bucket": "graphqltest-xd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794989247067:android:61a0410e5521e6c8cddd7e",
+        "android_client_info": {
+          "package_name": "com.mishka.graphqltest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794989247067-7482hncd0jj8iv4qppu86f59sub6lhla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mishka.graphqltest",
+            "certificate_hash": "8533fd7ce4cd01bdb9bdc868737cabbb9000294c"
+          }
+        },
+        {
+          "client_id": "794989247067-k6bbph3l7u5u5m4b79sng8qp1v974ts3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0Tqqa0OHQaMjj6a6L-SfNvAD_pJKx478"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794989247067-k6bbph3l7u5u5m4b79sng8qp1v974ts3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+query Characters{
+    characters{
+        results{
+            id
+            name
+            origin{
+                id
+                name
+                dimension
+                type
+            }
+            gender
+            image
+        }
+    }
+}

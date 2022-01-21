@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GraphQLTest</string>
+    <string name="gender">Género</string>
+    <string name="name">Nombre</string>
+    <string name="origin">Lugar de Nacimiento</string>
+    <string name="appearances">Aparición en episodios</string>
+</resources>
