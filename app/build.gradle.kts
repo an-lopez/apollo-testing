@@ -47,6 +47,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
     val roomVersion = "2.4.1"
 
@@ -78,6 +79,7 @@ dependencies {
     implementation("com.apollographql.apollo3:apollo-rx3-support:3.0.0")
 
 
+
     implementation("com.google.dagger:hilt-android:2.38.1")
     implementation("com.google.firebase:firebase-common-ktx:20.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
@@ -99,17 +101,24 @@ dependencies {
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("com.google.android.material:material:1.4.0")
-    testImplementation("junit:junit:4.+")
+
+    testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
+
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
     testImplementation("com.google.truth:truth:1.1.3")
+    androidTestImplementation("com.google.truth:truth:1.1.3")
 
     implementation("io.reactivex.rxjava3:rxjava:3.1.3")
 
     implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
 
     implementation("com.facebook.fresco:fresco:2.6.0")
+
+    testImplementation("io.mockk:mockk:1.12.2")
+
+    implementation("com.google.code.gson:gson:2.8.9")
 
 
 }

@@ -8,10 +8,18 @@
     <fragment
         android:id="@+id/charactersFragment"
         tools:layout="@layout/fragment_characters"
-        android:name="com.mishka.graphqltest.domain.dashboard.CharactersFragment"
-        android:label="CharactersFragment" />
+        android:name="com.mishka.graphqltest.domain.dashboard.CharactersDashboardFragment"
+        android:label="CharactersFragment" >
+        <action
+            android:id="@+id/action_charactersFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
 
-
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        tools:layout="@layout/fragment_character_detail"
+        android:name="com.mishka.graphqltest.domain.dashboard.CharacterDetailFragment"
+        android:label="CharacterDetailFragment" />
 
 
 </navigation>

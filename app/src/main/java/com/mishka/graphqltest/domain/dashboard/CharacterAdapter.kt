@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mishka.graphqltest.R
 import com.mishka.graphqltest.databinding.ItemCharacterBinding
-import com.mishka.graphqltest.interactors.dashboard.CharacterModel
+import com.mishka.graphqltest.domain.model.CharacterModel
 
-class CharacterAdapter :
+class CharacterAdapter constructor(private val onClick: (CharacterModel) -> Unit) :
     ListAdapter<CharacterModel, CharacterAdapter.CharacterViewHolder>(characterDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -32,11 +32,16 @@ class CharacterAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: CharacterModel) {
+            binding.root.setOnClickListener {
+                onClick(model)
+            }
             binding.imageCharacter.setImageURI(model.image)
             binding.textGender.text = model.gender
             binding.textName.text = model.name
             binding.textOrigin.text = model.origin.name
         }
+
+
     }
 
     companion object {

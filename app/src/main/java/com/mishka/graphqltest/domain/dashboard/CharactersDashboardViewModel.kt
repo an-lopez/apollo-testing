@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(private val getCharactersUseCase: GetCharactersUseCase):
+class CharactersDashboardViewModel @Inject constructor(private val getCharactersUseCase: GetCharactersUseCase):
     ViewModel() {
 
     private val _viewState = MutableLiveData<CharacterViewState>()
@@ -23,7 +23,7 @@ class DashboardViewModel @Inject constructor(private val getCharactersUseCase: G
     }
 
     private fun getCharacters() {
-        Timber.tag(DashboardViewModel::class.simpleName.toString()).d("Se invoca getCharactersUseCase")
+        Timber.tag(CharactersDashboardViewModel::class.simpleName.toString()).d("Se invoca getCharactersUseCase")
         getCharactersUseCase.invoke()
             .subscribeOn(Schedulers.io())
             .subscribe {

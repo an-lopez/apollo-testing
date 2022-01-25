@@ -2,8 +2,12 @@ package com.mishka.graphqltest.interactors.dashboard
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.rx3.rxSingle
+import com.mishka.graphqltest.apollo.CharactersAndEpisodeAndOriginQuery
 import com.mishka.graphqltest.apollo.CharactersQuery
 import com.mishka.graphqltest.core.UseCase
+import com.mishka.graphqltest.domain.model.CharacterModel
+import com.mishka.graphqltest.domain.model.EpisodeModel
+import com.mishka.graphqltest.domain.model.OriginModel
 import com.mishka.graphqltest.util.mapNullInputList
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
@@ -18,22 +22,6 @@ data class CharacterViewState(
     val loading: Boolean = false,
     val error: Throwable? = null
 )
-
-data class CharacterModel(
-    val id: Int,
-    val name: String,
-    val origin: OriginModel,
-    val gender: String,
-    val image: String
-)
-
-data class OriginModel(
-    val id: Int,
-    val name: String,
-    val dimension: String,
-    val type: String
-)
-
 
 class GetCharactersUseCase @Inject constructor(private val repository: DashboardRepository) :
     UseCase<Flowable<CharacterViewState>> {
@@ -116,10 +104,42 @@ inline fun mapCharacter(
         name = it?.name.orEmpty(),
         gender = it?.gender.orEmpty(),
         image = it?.image.orEmpty(),
-        origin = mapOriginModel(it?.origin)
+        origin = mapOriginModel(it?.origin),
+        episodes = emptyList()
     )
 
 fun mapOrigin(it: CharactersQuery.Origin?): OriginModel {
+    return OriginModel(
+        id = it?.id?.toInt() ?: 0,
+        name = it?.name.orEmpty(),
+        dimension = it?.dimension.orEmpty(),
+        type = it?.type.orEmpty(),
+    )
+}
+
+inline fun mapSingleCharacter(
+    it: CharactersAndEpisodeAndOriginQuery.Character?,
+    mapOriginModel: (originNetwork: CharactersAndEpisodeAndOriginQuery.Origin?) -> OriginModel,
+    mapEpisodes: (originNetwork: List<CharactersAndEpisodeAndOriginQuery.Episode?>) -> List<EpisodeModel>
+): CharacterModel =
+    CharacterModel(
+        id = it?.id?.toInt() ?: 0,
+        name = it?.name.orEmpty(),
+        gender = it?.gender.orEmpty(),
+        image = it?.image.orEmpty(),
+        origin = mapOriginModel(it?.origin),
+        episodes = mapEpisodes(it?.episode ?: emptyList())
+    )
+
+fun mapEpisode(episode: CharactersAndEpisodeAndOriginQuery.Episode?): EpisodeModel = with(episode){
+    EpisodeModel(id = this?.id?.toInt() ?: 0,
+        name = this?.name.orEmpty(),
+        episode = this?.episode.orEmpty(),
+        airDate = this?.air_date.orEmpty()
+    )
+}
+
+fun mapOriginCharactersQuery(it: CharactersAndEpisodeAndOriginQuery.Origin?): OriginModel {
     return OriginModel(
         id = it?.id?.toInt() ?: 0,
         name = it?.name.orEmpty(),

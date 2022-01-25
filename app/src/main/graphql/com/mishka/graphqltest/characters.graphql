@@ -3,6 +3,12 @@ query Characters{
         results{
             id
             name
+            episode{
+                id
+                episode
+                name
+                air_date
+            }
             origin{
                 id
                 name
