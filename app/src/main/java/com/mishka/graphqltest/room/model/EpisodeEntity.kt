@@ -1,4 +1,4 @@
-package com.mishka.graphqltest.room
+package com.mishka.graphqltest.room.model
 
 data class EpisodeEntity(
     val id: Int,

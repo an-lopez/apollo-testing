@@ -1,14 +1,11 @@
 package com.mishka.graphqltest.domain.dashboard
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mishka.graphqltest.R
 import com.mishka.graphqltest.databinding.ActivityDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint

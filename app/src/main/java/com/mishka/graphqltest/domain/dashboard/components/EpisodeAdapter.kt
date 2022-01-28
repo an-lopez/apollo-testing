@@ -1,4 +1,4 @@
-package com.mishka.graphqltest.domain.dashboard
+package com.mishka.graphqltest.domain.dashboard.components
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

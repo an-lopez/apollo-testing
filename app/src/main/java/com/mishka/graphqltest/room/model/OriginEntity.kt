@@ -1,4 +1,4 @@
-package com.mishka.graphqltest.room
+package com.mishka.graphqltest.room.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

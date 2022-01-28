@@ -2,7 +2,7 @@ package com.mishka.graphqltest.util
 
 object AuthenticationUtil{
 
-    val users = mutableListOf<String>("antonio.lopez@wizeline.com", "peter@mail.com")
+    val users = mutableListOf("antonio.lopez@wizeline.com", "peter@mail.com")
 
     /**
      * the input is invalid if
