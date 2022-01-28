@@ -1,24 +1,21 @@
 package com.mishka.graphqltest.domain.dashboard.view
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mishka.graphqltest.R
 import com.mishka.graphqltest.databinding.FragmentCharacterDetailBinding
 import com.mishka.graphqltest.domain.dashboard.viewmodel.CharacterDetailViewModel
 import com.mishka.graphqltest.domain.model.CharacterModel
 import com.mishka.graphqltest.domain.model.OriginModel
-import com.mishka.graphqltest.util.textChanges
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class CharacterDetailFragment : Fragment() {
@@ -45,9 +42,6 @@ class CharacterDetailFragment : Fragment() {
 
     @OptIn(ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
     private fun setView() {
-        binding.textImageHolder.textChanges().debounce(200).onEach {
-            binding.imageProfile.setImageURI(it.toString())
-        }.launchIn(lifecycleScope)
 
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         val adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, items2)

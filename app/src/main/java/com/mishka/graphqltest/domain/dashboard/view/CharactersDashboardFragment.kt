@@ -62,7 +62,9 @@ class CharactersDashboardFragment : Fragment() {
 
     private fun setSubscribers() {
         viewModel.viewState.observe(requireActivity()) {
-            adapter.submitList(it.characters)
+            it.characters?.let{ list ->
+                adapter.submitList(list)
+            }
         }
     }
 

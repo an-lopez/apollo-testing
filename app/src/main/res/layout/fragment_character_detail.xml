@@ -11,22 +11,6 @@
             android:paddingBottom="32dp">
 
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/image_profile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="96dp"
-                app:placeholderImage="@drawable/ic_outline_people_24"
-                fresco:roundingBorderWidth="2dp"
-                fresco:roundingBorderColor="@android:color/black"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                fresco:roundAsCircle="true"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_name"
                 android:layout_width="0dp"
@@ -36,7 +20,7 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_profile">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/text_name_holder"
