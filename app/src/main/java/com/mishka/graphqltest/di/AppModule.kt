@@ -1,16 +1,24 @@
 package com.mishka.graphqltest.di
 
+import android.content.Context
+import androidx.room.Room
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
-import com.mishka.graphqltest.apollo.CharactersQuery
-import com.mishka.graphqltest.interactors.dashboard.DashboardRepository
-import com.mishka.graphqltest.interactors.dashboard.DashboardRepositoryImpl
-import com.mishka.graphqltest.interactors.dashboard.mapCharacterDto
-import com.mishka.graphqltest.interactors.dashboard.mapOrigin
+import com.google.gson.Gson
+import com.mishka.graphqltest.data.repository.CharacterRepository
+import com.mishka.graphqltest.data.repository.CharacterRepositoryImpl
+import com.mishka.graphqltest.domain.model.CharacterModel
+import com.mishka.graphqltest.room.ApplicationDatabase
+import com.mishka.graphqltest.room.dao.CharacterDao
+import com.mishka.graphqltest.room.model.CharacterEntity
+import com.mishka.graphqltest.util.mapCharacterEntityToModel
+import com.mishka.graphqltest.util.mapCharacterModelToEntity
+import com.mishka.graphqltest.util.mapList
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -43,19 +51,44 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesCharacterMapper() = { data: CharactersQuery.Data? ->
-        mapCharacterDto(data) {
-            mapOrigin(it)
+    fun providesSingleCharacterMapper() = { data: CharacterEntity ->
+        mapCharacterEntityToModel(data)
+    }
+
+    @Provides
+    @Singleton
+    fun providesCacheCharacterMapper() = { data: CharacterModel ->
+        mapCharacterModelToEntity(data)
+    }
+
+    @Provides
+    @Singleton
+    fun providesEntityCharacterListMapper() = { data: List<CharacterEntity> ->
+        mapList(data){
+            mapCharacterEntityToModel(it)
         }
     }
 
+    @Provides
+    @Singleton
+    fun providesGson(): Gson {
+        return Gson()
+    }
+
+    @Provides
+    fun providesDatabase(@ApplicationContext context: Context): ApplicationDatabase =
+        Room.databaseBuilder(context, ApplicationDatabase::class.java, "APP_DATABASE").build()
+
+    @Provides
+    fun providesCharacterDao(applicationDatabase: ApplicationDatabase): CharacterDao =
+        applicationDatabase.characterDao()
 
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class BindDashboardRepository {
-    @Binds
-    abstract fun bindDashboardRepository(repositoryImpl: DashboardRepositoryImpl): DashboardRepository
+abstract class RepositoryModule{
 
+    @Binds
+    abstract fun bindCharacterDetailRepository(repositoryImpl: CharacterRepositoryImpl): CharacterRepository
 }

@@ -4,4 +4,5 @@
     <string name="name">Nombre</string>
     <string name="origin">Lugar de Nacimiento</string>
     <string name="appearances">Aparición en episodios</string>
+    <string name="image">URI Image</string>
 </resources>
