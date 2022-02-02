@@ -42,7 +42,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.fragment:fragment-ktx:1.4.0")
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
     implementation("androidx.navigation:navigation-runtime-ktx:2.3.5")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
@@ -80,10 +80,9 @@ dependencies {
 
 
 
-    implementation("com.google.dagger:hilt-android:2.38.1")
+
     implementation("com.google.firebase:firebase-common-ktx:20.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     implementation("com.jakewharton.timber:timber:5.0.1")
 
@@ -108,21 +107,26 @@ dependencies {
     testImplementation("io.mockk:mockk:1.12.2")
     testImplementation("com.google.truth:truth:1.1.3")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
 
     // Instrumented Implementation Libraries
+
     androidTestImplementation("androidx.test.ext:junit-ktx:1.1.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
 
     androidTestImplementation("com.google.truth:truth:1.1.3")
 
-    kaptAndroidTest( "com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
+    kaptAndroidTest( "com.google.dagger:hilt-android-compiler:2.38.1")
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("io.mockk:mockk-android:1.12.2")
     androidTestImplementation("androidx.test:core-ktx:1.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation( "androidx.test.espresso:espresso-contrib:3.4.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation( "androidx.test.espresso:espresso-contrib:3.3.0")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
 

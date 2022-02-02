@@ -1,19 +1,23 @@
 package com.mishka.graphqltest.util
 
-object AuthenticationUtil{
+object AuthenticationUtil {
 
     val users = mutableListOf("antonio.lopez@wizeline.com", "peter@mail.com")
 
     /**
-     * the input is invalid if
-     * ... userName is empty
-     * ... password length is less than 6 characters
+     * userName no puede estar vacío
+     * password no puede estar vacía
+     * password debe tener al menos una mayúscula
+     * password longitud mayor de 6 caracteres
      */
     fun validateLoginInput(
         userName: String,
         password: String
-    ): Boolean{
-        return userName.isNotEmpty() && password.length > 6
+    ): Boolean {
+        return userName.isNotEmpty() &&
+                password.isNotEmpty() &&
+                password.length > 6 &&
+                password.contains("[A-Z]+".toRegex())
     }
 
 }

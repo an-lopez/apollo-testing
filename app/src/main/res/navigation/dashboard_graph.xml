@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dashboard_graph"
-    app:startDestination="@id/charactersFragment">
+    app:startDestination="@id/fragmentWithAButton">
 
     <fragment
         android:id="@+id/charactersFragment"
@@ -20,6 +20,10 @@
         tools:layout="@layout/fragment_character_detail"
         android:name="com.mishka.graphqltest.domain.dashboard.view.CharacterDetailFragment"
         android:label="CharacterDetailFragment" />
+    <fragment
+        android:id="@+id/fragmentWithAButton"
+        android:name="com.mishka.graphqltest.domain.dashboard.view.FragmentWithAButton"
+        android:label="FragmentWithAButton" />
 
 
 </navigation>

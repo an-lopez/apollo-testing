@@ -5,19 +5,19 @@ import androidx.room.Room
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpClient
 import com.google.gson.Gson
-import com.mishka.graphqltest.apollo.CharactersQuery
 import com.mishka.graphqltest.data.repository.CharacterRepository
 import com.mishka.graphqltest.data.repository.CharacterRepositoryImpl
 import com.mishka.graphqltest.domain.model.CharacterModel
 import com.mishka.graphqltest.room.ApplicationDatabase
 import com.mishka.graphqltest.room.dao.CharacterDao
 import com.mishka.graphqltest.room.model.CharacterEntity
-import com.mishka.graphqltest.util.*
+import com.mishka.graphqltest.util.mapCharacterEntityToModel
+import com.mishka.graphqltest.util.mapCharacterModelToEntity
+import com.mishka.graphqltest.util.mapList
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
@@ -47,15 +47,6 @@ object AppModule {
                 setLevel(HttpLoggingInterceptor.Level.BASIC)
             })
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun providesCharacterMapper() = { data: CharactersQuery.Data? ->
-        val mapCharacterDto = mapCharacterDto(data) {
-            mapOrigin(it)
-        }
-        mapCharacterDto
     }
 
     @Provides
@@ -92,13 +83,12 @@ object AppModule {
     fun providesCharacterDao(applicationDatabase: ApplicationDatabase): CharacterDao =
         applicationDatabase.characterDao()
 
-
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
-abstract class BindCharacterDetailRepository {
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule{
+
     @Binds
     abstract fun bindCharacterDetailRepository(repositoryImpl: CharacterRepositoryImpl): CharacterRepository
-
 }
